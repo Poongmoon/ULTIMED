@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q3</title>
+    <link rel="stylesheet" href="q3-style.css"> <!-- 외부 CSS 연결 -->
+</head>
+<body>
+    <h1>추가적인 정보가 있나요?</h1>
+
+    <div class="choice-container">
+        <div class="choice" onclick="selectOption('yes')">예</div>
+        <div class="choice" onclick="selectOption('no')">아니오</div>
+    </div>
+
+    <textarea id="additional-info" placeholder="지병, 투병 내역, 당일의 식사, 먹은 약 등" disabled></textarea>
+
+    <button id="submit-button" class="submit-button" onclick="submitForm()">제출</button>
+
+    <script>
+        let selectedOption = '';
+        const textarea = document.getElementById('additional-info');
+        const submitButton = document.getElementById('submit-button');
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+        const bodyDetail = urlParams.get('body_detail');
+        const how = urlParams.get('how');
+
+        function selectOption(option) {
+            selectedOption = option;
+            document.querySelectorAll('.choice').forEach(choice => choice.classList.remove('selected'));
+            document.querySelector(`[onclick="selectOption('${option}')"]`).classList.add('selected');
+
+            if (option === 'yes') {
+                textarea.classList.add('active');
+                textarea.disabled = false;
+            } else {
+                textarea.classList.remove('active');
+                textarea.disabled = true;
+            }
+
+            submitButton.classList.add('active');
+        }
+
+        function submitForm() {
+            const detail = textarea.value;
+            window.location.href = `A1.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&body_detail=${encodeURIComponent(bodyDetail)}&how=${encodeURIComponent(how)}&detail=${encodeURIComponent(detail)}&option=${encodeURIComponent(selectedOption)}`;
+        }
+    </script>
+</body>
+</html>
