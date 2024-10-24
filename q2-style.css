@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    letter-spacing: 3px;
+}
+
+.illustration {
+    position: relative;
+    width: 300px;
+    height: 600px;
+    background-image: url('human-outline.png'); /* 이미지 경로 */
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.head-area, .abdomen-area {
+    position: absolute;
+    cursor: pointer;
+}
+
+.head-area {
+    top: 50px;
+    left: 85px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: rgba(255, 0, 0, 0.3); /* 머리 선택 영역 */
+}
+
+.abdomen-area {
+    top: 300px;
+    left: 75px;
+    width: 150px;
+    height: 180px;
+    background-color: rgba(255, 0, 0, 0.3); /* 배 선택 영역 */
+}
+
+.head-area:hover, .abdomen-area:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+}
