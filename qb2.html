@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qb2</title>
+    <link rel="stylesheet" href="qb2-style.css"> <!-- 외부 CSS 연결 -->
+</head>
+<body>
+    <h1>어떻게 아프신가요?</h1>
+
+    <div class="keywords-container">
+        <div class="keyword" data-value="콕콕-날카롭게 찌르는" onclick="toggleSelect(this)">콕콕-날카롭게 찌르는</div>
+        <div class="keyword" data-value="둔하고 무거운(묵직한)" onclick="toggleSelect(this)">둔하고 무거운(묵직한)</div>
+        <div class="keyword" data-value="(속이) 타는 듯한" onclick="toggleSelect(this)">(속이) 타는 듯한</div>
+        <div class="keyword" data-value="더부룩한" onclick="toggleSelect(this)">더부룩한</div>
+        <!-- 나머지 키워드들 -->
+    </div>
+
+    <button class="next-button" onclick="goToNextPage()">다음 -></button>
+
+    <script>
+        let selectedKeywords = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+        const bodyDetail = urlParams.get('body_detail');
+
+        function toggleSelect(element) {
+            const value = element.getAttribute('data-value');
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedKeywords = selectedKeywords.filter(keyword => keyword !== value);
+            } else {
+                element.classList.add('selected');
+                selectedKeywords.push(value);
+            }
+
+            document.querySelector('.next-button').style.display = selectedKeywords.length > 0 ? 'block' : 'none';
+        }
+
+        function goToNextPage() {
+            const how = selectedKeywords.join(',');
+            window.location.href = `q3.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&body_detail=${encodeURIComponent(bodyDetail)}&how=${encodeURIComponent(how)}`;
+        }
+    </script>
+</body>
+</html>
