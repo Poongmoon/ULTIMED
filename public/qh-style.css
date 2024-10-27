@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 
-/* 기본 페이지 스타일 */
 body {
     font-family: Arial, sans-serif;
     background-color: #000;
@@ -14,13 +13,13 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    overflow-x: hidden; /* 수평 스크롤 제거 */
+    overflow-x: hidden;
 }
 
 /* 컨테이너 스타일 */
 .container {
     width: 100%;
-    max-width: 600px; /* 모바일에서 최대 너비 설정 */
+    max-width: 600px;
     margin: auto;
     padding: 10px;
 }
@@ -30,16 +29,7 @@ h1, h2 {
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 20px;
-    word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
     color: #00b4d8;
-}
-
-/* 설명 텍스트 */
-p {
-    font-size: 1em;
-    text-align: center;
-    line-height: 1.5;
-    margin-bottom: 15px;
 }
 
 /* 머리 부위 선택 버튼 컨테이너 */
@@ -70,61 +60,64 @@ p {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    white-space: nowrap;
 }
 
 .button:hover {
     background-color: #005f7e;
 }
 
-.button:active {
+.button.selected {
     background-color: #004e6b;
-}
-
-/* 각 부위 명칭을 설명하는 텍스트 */
-.description-text {
-    font-size: 0.9em;
-    color: #ddd;
-    margin-top: 10px;
-    text-align: center;
 }
 
 /* 옆에서 본 머리 */
 .side-view .button {
     background-color: #00a1d8;
 }
-.side-view .button:hover {
+.side-view .button.selected {
     background-color: #0080a8;
-}
-.side-view h2 {
-    margin-top: 20px;
 }
 
 /* 위에서 본 머리 */
 .top-view .button {
     background-color: #00d89e;
 }
-.top-view .button:hover {
+.top-view .button.selected {
     background-color: #00a87e;
 }
-.top-view h2 {
-    margin-top: 20px;
+
+/* 다음 버튼 */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }
 
-/* 모바일에서 텍스트 크기 및 레이아웃 최적화 */
+.next-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #00b4d8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.next-button:hover {
+    background-color: #007b9e;
+}
+
+/* 모바일 스타일 */
 @media (max-width: 600px) {
     h1, h2 {
         font-size: 1.3em;
         padding: 0 15px;
     }
-    p, .description-text {
-        font-size: 0.9em;
-    }
-    .button {
+    .button, .next-button {
         font-size: 0.9em;
         padding: 8px 12px;
-    }
-    .container {
-        padding: 10px 15px;
     }
 }
