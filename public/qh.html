@@ -11,30 +11,32 @@
         <h1>머리 통증 부위를 선택하세요</h1>
 
         <!-- 옆에서 본 머리 섹션 -->
-        <div class="head-button-container side-view">
+        <div class="head-selection-container">
             <h2>옆에서 본 머리</h2>
-            <div class="head-button">
-                <button class="button" onclick="selectPart(this)">이마</button>
-                <button class="button" onclick="selectPart(this)">관자놀이</button>
-                <button class="button" onclick="selectPart(this)">눈 주위</button>
-                <button class="button" onclick="selectPart(this)">광대뼈</button>
-                <button class="button" onclick="selectPart(this)">턱</button>
-                <button class="button" onclick="selectPart(this)">귀 주위</button>
-                <button class="button" onclick="selectPart(this)">목 앞쪽</button>
-                <button class="button" onclick="selectPart(this)">목 뒤쪽</button>
-                <button class="button" onclick="selectPart(this)">후두부</button>
+            <div class="image-container side-view">
+                <img src="side-head.png" alt="옆에서 본 머리" usemap="#sideHeadMap">
+                <map name="sideHeadMap">
+                    <area shape="rect" coords="30,20,80,60" alt="이마" onclick="selectPart('이마', this)">
+                    <area shape="rect" coords="90,30,140,70" alt="관자놀이" onclick="selectPart('관자놀이', this)">
+                    <area shape="rect" coords="50,90,100,130" alt="눈 주위" onclick="selectPart('눈 주위', this)">
+                    <area shape="rect" coords="40,140,90,180" alt="턱" onclick="selectPart('턱', this)">
+                    <area shape="rect" coords="10,160,50,200" alt="목 뒤쪽" onclick="selectPart('목 뒤쪽', this)">
+                </map>
             </div>
         </div>
 
         <!-- 위에서 본 머리 섹션 -->
-        <div class="head-button-container top-view">
+        <div class="head-selection-container">
             <h2>위에서 본 머리</h2>
-            <div class="head-button">
-                <button class="button" onclick="selectPart(this)">정수리</button>
-                <button class="button" onclick="selectPart(this)">앞머리</button>
-                <button class="button" onclick="selectPart(this)">뒤통수</button>
-                <button class="button" onclick="selectPart(this)">왼쪽 머리</button>
-                <button class="button" onclick="selectPart(this)">오른쪽 머리</button>
+            <div class="image-container top-view">
+                <img src="top-head.png" alt="위에서 본 머리" usemap="#topHeadMap">
+                <map name="topHeadMap">
+                    <area shape="circle" coords="75,50,30" alt="정수리" onclick="selectPart('정수리', this)">
+                    <area shape="rect" coords="20,20,130,40" alt="앞머리" onclick="selectPart('앞머리', this)">
+                    <area shape="rect" coords="20,90,130,110" alt="뒤통수" onclick="selectPart('뒤통수', this)">
+                    <area shape="rect" coords="10,50,40,80" alt="왼쪽 머리" onclick="selectPart('왼쪽 머리', this)">
+                    <area shape="rect" coords="110,50,140,80" alt="오른쪽 머리" onclick="selectPart('오른쪽 머리', this)">
+                </map>
             </div>
         </div>
 
@@ -48,17 +50,15 @@
         // 선택한 부위를 저장하는 배열
         let selectedParts = [];
 
-        function selectPart(button) {
-            const part = button.textContent;
-
+        function selectPart(part, element) {
             // 선택한 부위가 이미 있는 경우 배열에서 제거하고 스타일 초기화
             if (selectedParts.includes(part)) {
                 selectedParts = selectedParts.filter(item => item !== part);
-                button.classList.remove('selected');
+                element.classList.remove('selected');
             } else {
-                // 선택한 부위 추가 및 버튼 스타일 변경
+                // 선택한 부위 추가 및 이미지 스타일 변경
                 selectedParts.push(part);
-                button.classList.add('selected');
+                element.classList.add('selected');
             }
         }
 
