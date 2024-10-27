@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qh</title>
+    <link rel="stylesheet" href="qh-style.css"> <!-- 외부 CSS 연결 -->
+</head>
+<body>
+    <h1>머리의 아픈 부위를 선택하세요</h1>
+
+    <div class="illustration-container">
+        <!-- 머리 옆 모습과 라벨 -->
+        <div class="head-section-container">
+            <p class="label">옆에서 봤을 때</p>
+            <div class="head-side-view">
+                <div class="head-section" data-value="1" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="2" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="3" onclick="toggleSelect(this)"></div>
+            </div>
+        </div>
+
+        <!-- 머리 위에서 본 모습과 라벨 -->
+        <div class="head-section-container">
+            <p class="label">위에서 봤을 때</p>
+            <div class="head-top-view">
+                <div class="head-section" data-value="4" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="5" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="6" onclick="toggleSelect(this)"></div>
+            </div>
+        </div>
+    </div>
+
+    <button class="next-button" onclick="goToNextPage()">다음 -></button>
+
+    <script>
+        let selectedAreas = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+
+        function toggleSelect(element) {
+            const value = element.getAttribute('data-value');
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedAreas = selectedAreas.filter(area => area !== value);
+            } else {
+                element.classList.add('selected');
+                selectedAreas.push(value);
+            }
+
+            document.querySelector('.next-button').style.display = selectedAreas.length > 0 ? 'block' : 'none';
+        }
+
+        function goToNextPage() {
+            const headDetail = selectedAreas.join(',');
+            window.location.href = `qh2.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&head_detail=${encodeURIComponent(headDetail)}`;
+        }
+    </script>
+</body>
+</html>

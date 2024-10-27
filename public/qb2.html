@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qb2</title>
+    <link rel="stylesheet" href="qb2-style.css"> <!-- 외부 CSS 연결 -->
+</head>
+<body>
+    <h1>어떻게 아프신가요?</h1>
+
+    <div class="keywords-container">
+        <div class="keyword" data-value="콕콕-날카롭게 찌르는" onclick="toggleSelect(this)">콕콕-날카롭게 찌르는</div>
+        <div class="keyword" data-value="둔하고 무거운(묵직한)" onclick="toggleSelect(this)">둔하고 무거운(묵직한)</div>
+        <div class="keyword" data-value="(속이) 타는 듯한" onclick="toggleSelect(this)">(속이) 타는 듯한</div>
+        <div class="keyword" data-value="더부룩한" onclick="toggleSelect(this)">더부룩한</div>
+        <div class="keyword" data-value="꾸준히 누르는" onclick="toggleSelect(this)">꾸준히 누르는</div>
+        <div class="keyword" data-value="등으로 퍼지는" onclick="toggleSelect(this)">등으로 퍼지는</div>
+        <div class="keyword" data-value="갑자기 (콕콕) 찌르는" onclick="toggleSelect(this)">갑자기 (콕콕) 찌르는</div>
+        <div class="keyword" data-value="매우 강하게 찌르는" onclick="toggleSelect(this)">매우 강하게 찌르는</div>
+        <div class="keyword" data-value="소변을 볼때 따끔따끔한" onclick="toggleSelect(this)">소변을 볼때 따끔따끔한</div>
+        <div class="keyword" data-value="꼬이듯이 아픈 통증" onclick="toggleSelect(this)">꼬이듯이 아픈 통증</div>
+        <div class="keyword" data-value="둔하게 아프다가, 오른쪽 아래로 통증이 옮겨감" onclick="toggleSelect(this)">둔하게 아프다가, 오른쪽 아래로 통증이 옮겨감</div>
+        <div class="keyword" data-value="묵직하고 팽팽한" onclick="toggleSelect(this)">묵직하고 팽팽한</div>
+        <div class="keyword" data-value="눌리는듯한" onclick="toggleSelect(this)">눌리는듯한</div>
+        <div class="keyword" data-value="복부가 무거움" onclick="toggleSelect(this)">복부가 무거움</div>
+        <div class="keyword" data-value="간헐적으로 찌르는" onclick="toggleSelect(this)">간헐적으로 찌르는</div>
+        <div class="keyword" data-value="팽팽하게 당기는듯한" onclick="toggleSelect(this)">팽팽하게 당기는듯한</div>
+        <div class="keyword" data-value="쥐어짜는듯한" onclick="toggleSelect(this)">쥐어짜는듯한</div>
+    </div>
+
+    <button class="next-button" onclick="goToNextPage()">다음 -></button>
+
+    <script>
+        let selectedKeywords = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+        const bodyDetail = urlParams.get('body_detail');
+
+        function toggleSelect(element) {
+            const value = element.getAttribute('data-value');
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedKeywords = selectedKeywords.filter(keyword => keyword !== value);
+            } else {
+                element.classList.add('selected');
+                selectedKeywords.push(value);
+            }
+
+            document.querySelector('.next-button').style.display = selectedKeywords.length > 0 ? 'block' : 'none';
+        }
+
+        function goToNextPage() {
+            const how = selectedKeywords.join(',');
+            window.location.href = `q3.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&body_detail=${encodeURIComponent(bodyDetail)}&how=${encodeURIComponent(how)}`;
+        }
+    </script>
+</body>
+</html>

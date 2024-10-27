@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qh2</title>
+    <link rel="stylesheet" href="qh2-style.css"> <!-- 외부 CSS 연결 -->
+</head>
+<body>
+    <h1>어떻게 아프신가요?</h1>
+
+    <div class="keywords-container">
+        <div class="keyword" data-value="꽉 조이는 듯한" onclick="toggleSelect(this)">꽉 조이는 듯한</div>
+        <div class="keyword" data-value="지끈지끈 욱신거리는" onclick="toggleSelect(this)">지끈지끈 욱신거리는</div>
+        <div class="keyword" data-value="둔탁하게 무거운" onclick="toggleSelect(this)">둔탁하게 무거운</div>
+        <div class="keyword" data-value="깨질 듯한" onclick="toggleSelect(this)">깨질 듯한</div>
+        <div class="keyword" data-value="눈 뒤에서 압박감을 느끼는" onclick="toggleSelect(this)">눈 뒤에서 압박감을 느끼는</div>
+        <div class="keyword" data-value="쏘는 듯한 날카로운" onclick="toggleSelect(this)">쏘는 듯한 날카로운</div>
+        <div class="keyword" data-value="머리가 맑지 않은" onclick="toggleSelect(this)">머리가 맑지 않은</div>
+        <div class="keyword" data-value="두피가 민감해지는" onclick="toggleSelect(this)">두피가 민감해지는</div>
+        <div class="keyword" data-value="코 주위에서 퍼지는" onclick="toggleSelect(this)">코 주위에서 퍼지는</div>
+        <div class="keyword" data-value="빛에 의해 심해지는" onclick="toggleSelect(this)">빛에 의해 심해지는</div>
+        <div class="keyword" data-value="소리에 민감해지는" onclick="toggleSelect(this)">소리에 민감해지는</div>
+        <div class="keyword" data-value="뒷목에서 시작되는" onclick="toggleSelect(this)">뒷목에서 시작되는</div>
+        <div class="keyword" data-value="귀 주변이 울리는" onclick="toggleSelect(this)">귀 주변이 울리는</div>
+        <div class="keyword" data-value="얼굴 전체가 아픈" onclick="toggleSelect(this)">얼굴 전체가 아픈</div>
+        <div class="keyword" data-value="목과 머리가 뻣뻣한" onclick="toggleSelect(this)">목과 머리가 뻣뻣한</div>
+        <div class="keyword" data-value="재채기할 때 느껴지는" onclick="toggleSelect(this)">재채기할 때 느껴지는</div>
+        <div class="keyword" data-value="머리가 뒤로 젖혀질 때 심해지는" onclick="toggleSelect(this)">머리가 뒤로 젖혀질 때 심해지는</div>
+        <div class="keyword" data-value="눈을 뜰 때 발생하는" onclick="toggleSelect(this)">눈을 뜰 때 발생하는</div>
+        <div class="keyword" data-value="턱을 움직일 때 발생하는" onclick="toggleSelect(this)">턱을 움직일 때 발생하는</div>
+        <div class="keyword" data-value="머리를 돌릴 때 발생하는" onclick="toggleSelect(this)">머리를 돌릴 때 발생하는 통증</div>
+    </div>
+
+    <button class="next-button" onclick="goToNextPage()">다음 -></button>
+
+    <script>
+        let selectedKeywords = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+        const body_detail = urlParams.get('body_detail');
+
+        function toggleSelect(element) {
+            const value = element.getAttribute('data-value');
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedKeywords = selectedKeywords.filter(keyword => keyword !== value);
+            } else {
+                element.classList.add('selected');
+                selectedKeywords.push(value);
+            }
+
+            document.querySelector('.next-button').style.display = selectedKeywords.length > 0 ? 'block' : 'none';
+        }
+
+        function goToNextPage() {
+            const how = selectedKeywords.join(',');
+            window.location.href = `q3.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&body_detail=${encodeURIComponent(body_detail)}&how=${encodeURIComponent(how)}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qb</title>
+    <link rel="stylesheet" href="qb-style.css"> <!-- 외부 CSS 연결 -->
+</head>
+<body>
+    <h1>배의 아픈 부위를 선택하세요</h1>
+
+    <div class="illustration-container">
+        <div class="grid">
+            <div data-value="좌측 상복부" onclick="toggleSelect(this)"></div>
+            <div data-value="중앙 상복부" onclick="toggleSelect(this)"></div>
+            <div data-value="우측 상복부" onclick="toggleSelect(this)"></div>
+            <div data-value="좌측 중복부" onclick="toggleSelect(this)"></div>
+            <div data-value="중앙 중복부" onclick="toggleSelect(this)"></div>
+            <div data-value="우측 중복부" onclick="toggleSelect(this)"></div>
+            <div data-value="좌측 하복부" onclick="toggleSelect(this)"></div>
+            <div data-value="중앙 하복부" onclick="toggleSelect(this)"></div>
+            <div data-value="우측 하복부" onclick="toggleSelect(this)"></div>
+        </div>
+    </div>
+
+    <button class="next-button" onclick="goToNextPage()">다음 -></button>
+
+    <script>
+        let selectedAreas = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+
+        function toggleSelect(element) {
+            const value = element.getAttribute('data-value');
+            if (element.classList.contains('selected')) {
+                element.classList.remove('selected');
+                selectedAreas = selectedAreas.filter(area => area !== value);
+            } else {
+                element.classList.add('selected');
+                selectedAreas.push(value);
+            }
+
+            document.querySelector('.next-button').style.display = selectedAreas.length > 0 ? 'block' : 'none';
+        }
+
+        function goToNextPage() {
+            const bodyDetail = selectedAreas.join(',');
+            window.location.href = `qb2.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&body_detail=${encodeURIComponent(bodyDetail)}`;
+        }
+    </script>
+</body>
+</html>

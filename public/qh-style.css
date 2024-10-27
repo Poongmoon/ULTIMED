@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.illustration-container {
+    display: flex;
+    justify-content: space-around;
+    width: 600px;
+}
+
+.head-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.head-side-view, .head-top-view {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.head-side-view {
+    background-image: url('head-side.png'); /* 머리 옆모습 */
+}
+
+.head-top-view {
+    background-image: url('head-top.png'); /* 머리 위에서 본 모습 */
+}
+
+.head-section {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.head-section:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.head-section.selected {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 각 부위의 위치 설정 */
+.head-side-view .head-section:nth-child(1) {
+    top: 50px;
+    left: 60px;
+    width: 80px;
+    height: 120px;
+}
+
+.head-side-view .head-section:nth-child(2) {
+    top: 180px;
+    left: 40px;
+    width: 100px;
+    height: 70px;
+}
+
+.head-side-view .head-section:nth-child(3) {
+    top: 50px;
+    left: 150px;
+    width: 80px;
+    height: 120px;
+}
+
+.head-top-view .head-section:nth-child(1) {
+    top: 60px;
+    left: 80px;
+    width: 80px;
+    height: 80px;
+}
+
+.head-top-view .head-section:nth-child(2) {
+    top: 160px;
+    left: 60px;
+    width: 100px;
+    height: 70px;
+}
+
+.head-top-view .head-section:nth-child(3) {
+    top: 100px;
+    left: 50px;
+    width: 120px;
+    height: 90px;
+}
+
+/* 라벨 스타일 */
+.label {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.next-button {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1E90FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
