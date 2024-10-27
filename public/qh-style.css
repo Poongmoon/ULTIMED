@@ -1,123 +1,130 @@
-body {
+/* 공통 스타일 */
+* {
     margin: 0;
     padding: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
+}
+
+/* 기본 페이지 스타일 */
+body {
+    font-family: Arial, sans-serif;
     background-color: #000;
-    color: white;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-}
-
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.illustration-container {
-    display: flex;
-    justify-content: space-around;
-    width: 600px;
-}
-
-.head-section-container {
+    color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    overflow-x: hidden; /* 수평 스크롤 제거 */
 }
 
-.head-side-view, .head-top-view {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background-size: contain;
-    background-repeat: no-repeat;
+/* 컨테이너 스타일 */
+.container {
+    width: 100%;
+    max-width: 600px; /* 모바일에서 최대 너비 설정 */
+    margin: auto;
+    padding: 10px;
 }
 
-.head-side-view {
-    background-image: url('head-side.png'); /* 머리 옆모습 */
-}
-
-.head-top-view {
-    background-image: url('head-top.png'); /* 머리 위에서 본 모습 */
-}
-
-.head-section {
-    position: absolute;
-    background-color: rgba(255, 0, 0, 0.3);
-    cursor: pointer;
-}
-
-.head-section:hover {
-    background-color: rgba(255, 0, 0, 0.5);
-}
-
-.head-section.selected {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* 각 부위의 위치 설정 */
-.head-side-view .head-section:nth-child(1) {
-    top: 50px;
-    left: 60px;
-    width: 80px;
-    height: 120px;
-}
-
-.head-side-view .head-section:nth-child(2) {
-    top: 180px;
-    left: 40px;
-    width: 100px;
-    height: 70px;
-}
-
-.head-side-view .head-section:nth-child(3) {
-    top: 50px;
-    left: 150px;
-    width: 80px;
-    height: 120px;
-}
-
-.head-top-view .head-section:nth-child(1) {
-    top: 60px;
-    left: 80px;
-    width: 80px;
-    height: 80px;
-}
-
-.head-top-view .head-section:nth-child(2) {
-    top: 160px;
-    left: 60px;
-    width: 100px;
-    height: 70px;
-}
-
-.head-top-view .head-section:nth-child(3) {
-    top: 100px;
-    left: 50px;
-    width: 120px;
-    height: 90px;
-}
-
-/* 라벨 스타일 */
-.label {
-    font-size: 1.8em;
-    font-weight: bold;
-    margin-bottom: 10px;
+/* 제목 스타일 */
+h1, h2 {
+    font-size: 1.5em;
     text-align: center;
+    margin-bottom: 20px;
+    word-wrap: break-word; /* 긴 텍스트 줄바꿈 */
+    color: #00b4d8;
 }
 
-.next-button {
-    display: none;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #1E90FF;
-    color: white;
+/* 설명 텍스트 */
+p {
+    font-size: 1em;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+/* 머리 부위 선택 버튼 컨테이너 */
+.head-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+/* 각 부위 버튼 */
+.head-button {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.button {
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007b9e;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
     cursor: pointer;
+    transition: background-color 0.3s;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.button:hover {
+    background-color: #005f7e;
+}
+
+.button:active {
+    background-color: #004e6b;
+}
+
+/* 각 부위 명칭을 설명하는 텍스트 */
+.description-text {
+    font-size: 0.9em;
+    color: #ddd;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/* 옆에서 본 머리 */
+.side-view .button {
+    background-color: #00a1d8;
+}
+.side-view .button:hover {
+    background-color: #0080a8;
+}
+.side-view h2 {
+    margin-top: 20px;
+}
+
+/* 위에서 본 머리 */
+.top-view .button {
+    background-color: #00d89e;
+}
+.top-view .button:hover {
+    background-color: #00a87e;
+}
+.top-view h2 {
+    margin-top: 20px;
+}
+
+/* 모바일에서 텍스트 크기 및 레이아웃 최적화 */
+@media (max-width: 600px) {
+    h1, h2 {
+        font-size: 1.3em;
+        padding: 0 15px;
+    }
+    p, .description-text {
+        font-size: 0.9em;
+    }
+    .button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+    .container {
+        padding: 10px 15px;
+    }
 }
