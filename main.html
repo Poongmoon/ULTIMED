@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ULTIMED</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* 검은 배경 */
+            color: white;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 5em;
+            margin: 0;
+            letter-spacing: 5px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .start-button {
+            background-color: #1E90FF;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .start-button:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .start-button:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>ULTIMED</h1>
+        <div class="button-container">
+            <a href="q1.html">
+                <button class="start-button">진단 시작</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
