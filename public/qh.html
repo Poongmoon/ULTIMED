@@ -3,67 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>머리 통증 선택</title>
-    <link rel="stylesheet" href="qh-styles.css">
+    <title>Qh</title>
+    <link rel="stylesheet" href="qh-style.css"> <!-- 외부 CSS 연결 -->
 </head>
 <body>
-    <div class="container">
-        <h1>머리 통증 부위를 선택하세요</h1>
+    <h1>머리의 아픈 부위를 선택하세요</h1>
 
-        <!-- 옆에서 본 머리 섹션 -->
-        <div class="head-selection-container">
-            <h2>옆에서 본 머리</h2>
-            <div class="grid-container side-view">
-                <div class="grid-item" onclick="selectPart(this, '이마')">이마</div>
-                <div class="grid-item" onclick="selectPart(this, '관자놀이')">관자놀이</div>
-                <div class="grid-item" onclick="selectPart(this, '눈 주위')">눈 주위</div>
-                <div class="grid-item" onclick="selectPart(this, '광대뼈')">광대뼈</div>
-                <div class="grid-item" onclick="selectPart(this, '턱')">턱</div>
-                <div class="grid-item" onclick="selectPart(this, '귀 주위')">귀 주위</div>
-                <div class="grid-item" onclick="selectPart(this, '목 앞쪽')">목 앞쪽</div>
-                <div class="grid-item" onclick="selectPart(this, '목 뒤쪽')">목 뒤쪽</div>
-                <div class="grid-item" onclick="selectPart(this, '후두부')">후두부</div>
-            </div>
+    <div class="illustration-container">
+        <div class="head-side-view">
+            <!-- 머리 옆 모습, 부위 선택 칸 -->
+            <div class="head-section" data-value="1" onclick="toggleSelect(this)"></div>
+            <div class="head-section" data-value="2" onclick="toggleSelect(this)"></div>
+            <div class="head-section" data-value="3" onclick="toggleSelect(this)"></div>
         </div>
-
-        <!-- 위에서 본 머리 섹션 -->
-        <div class="head-selection-container">
-            <h2>위에서 본 머리</h2>
-            <div class="grid-container top-view">
-                <div class="grid-item" onclick="selectPart(this, '정수리')">정수리</div>
-                <div class="grid-item" onclick="selectPart(this, '앞머리')">앞머리</div>
-                <div class="grid-item" onclick="selectPart(this, '뒤통수')">뒤통수</div>
-                <div class="grid-item" onclick="selectPart(this, '왼쪽 머리')">왼쪽 머리</div>
-                <div class="grid-item" onclick="selectPart(this, '오른쪽 머리')">오른쪽 머리</div>
-            </div>
-        </div>
-
-        <!-- 다음 버튼 -->
-        <div class="button-container">
-            <button class="next-button" onclick="goToNextPage()">다음 -></button>
+        <div class="head-top-view">
+            <!-- 머리 위에서 본 모습, 부위 선택 칸 -->
+            <div class="head-section" data-value="4" onclick="toggleSelect(this)"></div>
+            <div class="head-section" data-value="5" onclick="toggleSelect(this)"></div>
+            <div class="head-section" data-value="6" onclick="toggleSelect(this)"></div>
         </div>
     </div>
 
-    <script>
-        // 선택한 부위를 저장하는 배열
-        let selectedParts = [];
+    <button class="next-button" onclick="goToNextPage()">다음 -></button>
 
-        function selectPart(element, part) {
-            // 선택한 부위가 이미 있는 경우 배열에서 제거하고 스타일 초기화
-            if (selectedParts.includes(part)) {
-                selectedParts = selectedParts.filter(item => item !== part);
+    <script>
+        let selectedAreas = [];
+        const urlParams = new URLSearchParams(window.location.search);
+        const name = urlParams.get('name');
+        const age = urlParams.get('age');
+        const body = urlParams.get('body');
+
+        function toggleSelect(element) {
+            const value = element.getAttribute('data-value');
+            if (element.classList.contains('selected')) {
                 element.classList.remove('selected');
+                selectedAreas = selectedAreas.filter(area => area !== value);
             } else {
-                // 선택한 부위 추가 및 스타일 변경
-                selectedParts.push(part);
                 element.classList.add('selected');
+                selectedAreas.push(value);
             }
+
+            document.querySelector('.next-button').style.display = selectedAreas.length > 0 ? 'block' : 'none';
         }
 
         function goToNextPage() {
-            // 선택한 부위를 URL에 포함하여 qh2.html로 이동
-            const selectedPartsStr = selectedParts.join(',');
-            window.location.href = `qh2.html?head_parts=${encodeURIComponent(selectedPartsStr)}`;
+            const headDetail = selectedAreas.join(',');
+            window.location.href = `next_page.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&head_detail=${encodeURIComponent(headDetail)}`;
         }
     </script>
 </body>
