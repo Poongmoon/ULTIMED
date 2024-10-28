@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>머리 통증 선택 - 옆/위에서 본 머리</title>
+    <title>머리 통증 선택</title>
     <link rel="stylesheet" href="qh-styles.css">
 </head>
 <body>
@@ -13,30 +13,28 @@
         <!-- 옆에서 본 머리 섹션 -->
         <div class="head-selection-container">
             <h2>옆에서 본 머리</h2>
-            <div class="image-container side-view">
-                <img src="side-head.png" alt="옆에서 본 머리" usemap="#sideHeadMap">
-                <map name="sideHeadMap">
-                    <area shape="rect" coords="30,20,80,60" alt="이마" onclick="selectPart('이마', this)">
-                    <area shape="rect" coords="90,30,140,70" alt="관자놀이" onclick="selectPart('관자놀이', this)">
-                    <area shape="rect" coords="50,90,100,130" alt="눈 주위" onclick="selectPart('눈 주위', this)">
-                    <area shape="rect" coords="40,140,90,180" alt="턱" onclick="selectPart('턱', this)">
-                    <area shape="rect" coords="10,160,50,200" alt="목 뒤쪽" onclick="selectPart('목 뒤쪽', this)">
-                </map>
+            <div class="grid-container side-view">
+                <div class="grid-item" onclick="selectPart(this, '이마')">이마</div>
+                <div class="grid-item" onclick="selectPart(this, '관자놀이')">관자놀이</div>
+                <div class="grid-item" onclick="selectPart(this, '눈 주위')">눈 주위</div>
+                <div class="grid-item" onclick="selectPart(this, '광대뼈')">광대뼈</div>
+                <div class="grid-item" onclick="selectPart(this, '턱')">턱</div>
+                <div class="grid-item" onclick="selectPart(this, '귀 주위')">귀 주위</div>
+                <div class="grid-item" onclick="selectPart(this, '목 앞쪽')">목 앞쪽</div>
+                <div class="grid-item" onclick="selectPart(this, '목 뒤쪽')">목 뒤쪽</div>
+                <div class="grid-item" onclick="selectPart(this, '후두부')">후두부</div>
             </div>
         </div>
 
         <!-- 위에서 본 머리 섹션 -->
         <div class="head-selection-container">
             <h2>위에서 본 머리</h2>
-            <div class="image-container top-view">
-                <img src="top-head.png" alt="위에서 본 머리" usemap="#topHeadMap">
-                <map name="topHeadMap">
-                    <area shape="circle" coords="75,50,30" alt="정수리" onclick="selectPart('정수리', this)">
-                    <area shape="rect" coords="20,20,130,40" alt="앞머리" onclick="selectPart('앞머리', this)">
-                    <area shape="rect" coords="20,90,130,110" alt="뒤통수" onclick="selectPart('뒤통수', this)">
-                    <area shape="rect" coords="10,50,40,80" alt="왼쪽 머리" onclick="selectPart('왼쪽 머리', this)">
-                    <area shape="rect" coords="110,50,140,80" alt="오른쪽 머리" onclick="selectPart('오른쪽 머리', this)">
-                </map>
+            <div class="grid-container top-view">
+                <div class="grid-item" onclick="selectPart(this, '정수리')">정수리</div>
+                <div class="grid-item" onclick="selectPart(this, '앞머리')">앞머리</div>
+                <div class="grid-item" onclick="selectPart(this, '뒤통수')">뒤통수</div>
+                <div class="grid-item" onclick="selectPart(this, '왼쪽 머리')">왼쪽 머리</div>
+                <div class="grid-item" onclick="selectPart(this, '오른쪽 머리')">오른쪽 머리</div>
             </div>
         </div>
 
@@ -50,22 +48,22 @@
         // 선택한 부위를 저장하는 배열
         let selectedParts = [];
 
-        function selectPart(part, element) {
+        function selectPart(element, part) {
             // 선택한 부위가 이미 있는 경우 배열에서 제거하고 스타일 초기화
             if (selectedParts.includes(part)) {
                 selectedParts = selectedParts.filter(item => item !== part);
                 element.classList.remove('selected');
             } else {
-                // 선택한 부위 추가 및 이미지 스타일 변경
+                // 선택한 부위 추가 및 스타일 변경
                 selectedParts.push(part);
                 element.classList.add('selected');
             }
         }
 
         function goToNextPage() {
-            // 선택한 부위를 URL에 포함하여 다음 페이지로 이동
+            // 선택한 부위를 URL에 포함하여 qh2.html로 이동
             const selectedPartsStr = selectedParts.join(',');
-            window.location.href = `nextPage.html?head_parts=${encodeURIComponent(selectedPartsStr)}`;
+            window.location.href = `qh2.html?head_parts=${encodeURIComponent(selectedPartsStr)}`;
         }
     </script>
 </body>
