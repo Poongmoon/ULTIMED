@@ -53,9 +53,9 @@
             document.querySelector('.next-button').style.display = selectedAreas.length > 0 ? 'block' : 'none';
         }
 
-        function goToqh2Page() {
+        function goToNextPage() {
             const headDetail = selectedAreas.join(',');
-            window.location.href = `qh2.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&head_detail=${encodeURIComponent(headDetail)}`;
+            window.location.href = `qh2.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}&body=${encodeURIComponent(body)}&body_detail=${encodeURIComponent(headDetail)}`;
         }
     </script>
 </body>
