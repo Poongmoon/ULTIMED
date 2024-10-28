@@ -14,86 +14,30 @@ body {
 
 h1 {
     font-size: 2.5em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.illustration-container {
+.keywords-container {
     display: flex;
-    justify-content: space-around;
-    width: 600px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    max-width: 600px;
 }
 
-.head-side-view, .head-top-view {
-    position: relative;
-    width: 300px;
-    height: 300px;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.head-side-view {
-    background-image: url('head-side.png'); /* 머리 옆모습 */
-}
-
-.head-top-view {
-    background-image: url('head-top.png'); /* 머리 위에서 본 모습 */
-}
-
-.head-section {
-    position: absolute;
-    background-color: rgba(255, 0, 0, 0.3);
+.keyword {
+    background-color: #222;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
     cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.head-section:hover {
-    background-color: rgba(255, 0, 0, 0.5);
-}
-
-.head-section.selected {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* 각 부위의 위치를 설정 */
-.head-side-view .head-section:nth-child(1) {
-    top: 50px;
-    left: 60px;
-    width: 80px;
-    height: 120px;
-}
-
-.head-side-view .head-section:nth-child(2) {
-    top: 180px;
-    left: 40px;
-    width: 100px;
-    height: 70px;
-}
-
-.head-side-view .head-section:nth-child(3) {
-    top: 50px;
-    left: 150px;
-    width: 80px;
-    height: 120px;
-}
-
-.head-top-view .head-section:nth-child(1) {
-    top: 60px;
-    left: 80px;
-    width: 80px;
-    height: 80px;
-}
-
-.head-top-view .head-section:nth-child(2) {
-    top: 160px;
-    left: 60px;
-    width: 100px;
-    height: 70px;
-}
-
-.head-top-view .head-section:nth-child(3) {
-    top: 100px;
-    left: 50px;
-    width: 120px;
-    height: 90px;
+.keyword.selected {
+    background-color: #1E90FF;
+    border-color: #1E90FF;
 }
 
 .next-button {
