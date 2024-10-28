@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Call OpenAI API
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # GitHub Secrets에서 API 키를 불러옴
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # OpenAI API 키를 GitHub Secrets에서 가져옵니다.
         run: |
           curl -X POST "https://api.openai.com/v1/chat/completions" \
           -H "Content-Type: application/json" \
