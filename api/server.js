@@ -1,11 +1,16 @@
 // api/server.js
 const express = require('express');
 const fetch = require('node-fetch');
+const cors = require('cors');
 const app = express();
+
+// CORS 설정 추가
+app.use(cors({
+    origin: 'https://poongmoon.github.io' // CORS 허용할 도메인 입력
+}));
 
 app.use(express.json());
 
-// Vercel 환경변수에서 OpenAI API 키 가져오기
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 app.post('/api/gpt', async (req, res) => {
