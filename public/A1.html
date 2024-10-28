@@ -5,87 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ULTIMED - 진단 및 해결 방안</title>
     <style>
-        /* 기본 설정 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body {
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            min-height: 100vh;
-            justify-content: center;
-        }
-
-        /* 제목 스타일 */
-        h1 {
-            font-size: 3em;
-            color: #00b4d8;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        /* 섹션 공통 스타일 */
-        .section {
-            width: 90%;
-            max-width: 700px;
-            background-color: #111;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 180, 216, 0.3);
-        }
-
-        /* 제목 스타일 */
-        h2 {
-            font-size: 1.5em;
-            color: #00b4d8;
-            margin-bottom: 10px;
-        }
-
-        /* 텍스트 영역 */
-        p {
-            font-size: 1.1em;
-            line-height: 1.5;
-            color: #ddd;
-        }
-
-        /* 버튼 스타일 */
-        .button-container {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #fff;
-            background-color: #00b4d8;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #007b9e;
-        }
-
-        /* 안내문 스타일 */
-        .disclaimer {
-            font-size: 0.9em;
-            color: #999;
-            margin-top: 30px;
-            text-align: center;
-            max-width: 700px;
-            line-height: 1.4;
-        }
+        /* 기본 스타일 */
     </style>
 </head>
 <body>
@@ -93,83 +13,36 @@
     <h1>ULTIMED</h1>
 
     <!-- 진단 결과 섹션 -->
-    <div class="section" id="diagnosis">
-        <h2>진단 결과</h2>
-        <p id="diagnosis-result">GPT의 진단이 여기에 표시됩니다.</p>
-    </div>
+    <div id="diagnosis">진단 결과가 여기에 표시됩니다.</div>
 
     <!-- 해결 방안 섹션 -->
-    <div class="section" id="solution">
-        <h2>해결 방안</h2>
-        <p id="solution-result">GPT의 해결 방안이 여기에 표시됩니다.</p>
-    </div>
-
-    <!-- 버튼 영역 -->
-    <div class="button-container">
-        <button onclick="evaluateService()">서비스 평가하기</button>
-        <button onclick="redirectToMap()">근처 병원 예약하기</button>
-    </div>
-
-    <!-- 안내문 -->
-    <p class="disclaimer">
-        위 진단 및 해결 방안은 제한된 정보와 비대면 평가를 바탕으로 제공된 것으로, 정확성과 신뢰성이 보장되지 않으므로, 정확한 진단을 위해 의료기관 방문을 권장합니다.
-    </p>
+    <div id="solution">해결 방안이 여기에 표시됩니다.</div>
 
     <script>
-        async function fetchResponse(prompt) {
-            const response = await fetch("https://vercel.com/kim-si-hyeons-projects/ultimed-main/2diD8Lv152c5oZy6JzkMxWwszK2g", {  // Vercel 백엔드 URL로 대체
-                method: "POST",
+        async function fetchDiagnosis(prompt) {
+            const response = await fetch('https://api.github.com/repos/YOUR_GITHUB_USERNAME/YOUR_REPO_NAME/actions/workflows/openai-request.yml/dispatches', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json"
+                    'Authorization': 'Bearer YOUR_GITHUB_TOKEN', // GitHub Personal Access Token 입력
+                    'Accept': 'application/vnd.github.v3+json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ prompt })
+                body: JSON.stringify({
+                    ref: 'main', // main 브랜치에 대한 요청
+                    inputs: { prompt: prompt }
+                })
             });
-            const data = await response.json();
-            return data.choices && data.choices[0].message.content ? data.choices[0].message.content.trim() : "응답을 처리하는 중 오류가 발생했습니다.";
-        }
 
-        async function fetchDiagnosisAndSolution() {
-            const diagnosisElement = document.getElementById("diagnosis-result");
-            const solutionElement = document.getElementById("solution-result");
-
-            // URL에서 쿼리 매개변수 가져오기
-            const urlParams = new URLSearchParams(window.location.search);
-            const name = urlParams.get("name") || "이름 없음";
-            const age = urlParams.get("age") || "나이 없음";
-            const body = urlParams.get("body") || "부위 없음";
-            const body_detail = urlParams.get("body_detail") || "세부 부위 없음";
-            const how = urlParams.get("how") || "통증 없음";
-            const optain = urlParams.get("optain") || "추가 정보 없음";
-
-            // 진단 프롬프트
-            const diagnosisPrompt = `너는 AI의사로서 환자의 현재 병과 증상을 진단해야 해. 환자의 이름은 ${name}, 나이는 ${age}살이며, ${body}에서 ${body_detail}에서 ${how} 통증을 겪고 있어. 추가 정보는 ${optain}이야. 이 환자의 진단 결과를 최대 3문장으로 짧고 간결하게 설명해줘.`;
-
-            // 해결 방안 프롬프트
-            const solutionPrompt = `너는 AI 의사로서 환자에게 적절한 해결 방안을 제공해야 해. 환자의 이름은 ${name}, 나이는 ${age}살이며, ${body}에서 ${body_detail}에서 ${how} 통증을 겪고 있어. 추가 정보는 ${optain}이야. 이 환자에게 어떤 해결 방안을 제시할 수 있을지 최대 3문장으로 짧고 간결하게 알려줘.`;
-
-            try {
-                const diagnosisResult = await fetchResponse(diagnosisPrompt);
-                const solutionResult = await fetchResponse(solutionPrompt);
-
-                diagnosisElement.textContent = diagnosisResult;
-                solutionElement.textContent = solutionResult;
-            } catch (error) {
-                console.error("오류 발생:", error);
-                diagnosisElement.textContent = "진단 정보를 가져오는 중 오류가 발생했습니다.";
-                solutionElement.textContent = "해결 방안을 가져오는 중 오류가 발생했습니다.";
+            if (response.ok) {
+                const result = await response.json();
+                document.getElementById('diagnosis').textContent = result.result;
+            } else {
+                document.getElementById('diagnosis').textContent = '오류 발생';
             }
         }
 
-        function evaluateService() {
-            window.location.href = "https://example.com/evaluate"; // 서비스 평가 링크로 변경
-        }
-
-        function redirectToMap() {
-            window.location.href = "map.html";
-        }
-
-        // 페이지 로드 시 진단 및 해결 방안 요청
-        window.onload = fetchDiagnosisAndSolution;
+        const prompt = '환자의 증상을 설명해주세요.';
+        fetchDiagnosis(prompt);
     </script>
 
 </body>
