@@ -1,0 +1,37 @@
+name: OpenAI API Request
+
+on:
+  workflow_dispatch:
+    inputs:
+      prompt:
+        description: 'Prompt for OpenAI API'
+        required: true
+        type: string
+
+jobs:
+  call-openai:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call OpenAI API
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          curl -X POST "https://api.openai.com/v1/chat/completions" \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer $OPENAI_API_KEY" \
+          -d '{
+                "model": "gpt-3.5-turbo",
+                "messages": [{"role": "user", "content": "${{ github.event.inputs.prompt }}"}],
+                "max_tokens": 150
+              }' > response.json
+        continue-on-error: true
+
+      - name: Output Response
+        id: response
+        run: |
+          cat response.json
+          echo "::set-output name=result::$(cat response.json)"
+
+outputs:
+  result: ${{ steps.response.outputs.result }}
