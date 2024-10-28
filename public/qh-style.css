@@ -1,109 +1,109 @@
-/* 공통 스타일 */
-* {
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: #000;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    overflow-x: hidden;
-}
-
-/* 컨테이너 스타일 */
-.container {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    padding: 10px;
-}
-
-/* 제목 스타일 */
-h1, h2 {
-    font-size: 1.5em;
+    color: white;
+    font-family: 'Arial', sans-serif;
     text-align: center;
+}
+
+h1 {
+    font-size: 2.5em;
     margin-bottom: 20px;
-    color: #00b4d8;
 }
 
-/* 머리 부위 선택 그리드 컨테이너 */
-.head-selection-container {
+.illustration-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0;
+    justify-content: space-around;
+    width: 600px;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 100%;
-    max-width: 300px;
+.head-side-view, .head-top-view {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-.grid-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    font-size: 1em;
-    font-weight: bold;
-    color: #fff;
-    background-color: #333;
-    border: 2px solid #555;
-    border-radius: 5px;
+.head-side-view {
+    background-image: url('head-side.png'); /* 머리 옆모습 */
+}
+
+.head-top-view {
+    background-image: url('head-top.png'); /* 머리 위에서 본 모습 */
+}
+
+.head-section {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.3);
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.grid-item:hover {
-    background-color: #555;
+.head-section:hover {
+    background-color: rgba(255, 0, 0, 0.5);
 }
 
-.grid-item.selected {
-    background-color: #007b9e;
-    border-color: #00b4d8;
+.head-section.selected {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
-/* 다음 버튼 */
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
+/* 각 부위의 위치를 설정 */
+.head-side-view .head-section:nth-child(1) {
+    top: 50px;
+    left: 60px;
+    width: 80px;
+    height: 120px;
+}
+
+.head-side-view .head-section:nth-child(2) {
+    top: 180px;
+    left: 40px;
+    width: 100px;
+    height: 70px;
+}
+
+.head-side-view .head-section:nth-child(3) {
+    top: 50px;
+    left: 150px;
+    width: 80px;
+    height: 120px;
+}
+
+.head-top-view .head-section:nth-child(1) {
+    top: 60px;
+    left: 80px;
+    width: 80px;
+    height: 80px;
+}
+
+.head-top-view .head-section:nth-child(2) {
+    top: 160px;
+    left: 60px;
+    width: 100px;
+    height: 70px;
+}
+
+.head-top-view .head-section:nth-child(3) {
+    top: 100px;
+    left: 50px;
+    width: 120px;
+    height: 90px;
 }
 
 .next-button {
+    display: none;
+    margin-top: 20px;
     padding: 10px 20px;
-    font-size: 1em;
-    font-weight: bold;
-    color: #fff;
-    background-color: #00b4d8;
+    background-color: #1E90FF;
+    color: white;
     border: none;
     border-radius: 5px;
+    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.next-button:hover {
-    background-color: #007b9e;
-}
-
-/* 모바일 스타일 */
-@media (max-width: 600px) {
-    h1, h2 {
-        font-size: 1.3em;
-        padding: 0 15px;
-    }
-    .next-button {
-        font-size: 0.9em;
-        padding: 8px 12px;
-    }
 }
