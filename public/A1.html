@@ -64,7 +64,7 @@
             const response = await fetch('https://api.github.com/repos/poongmoon/ULTIMED/actions/workflows/openai-request.yml/dispatches', {
                 method: 'POST',
                 headers: {
-                    'Authorization': 'Bearer YOUR_GITHUB_PERSONAL_ACCESS_TOKEN', // GitHub Personal Access Token을 코드에 직접 넣지 않고, GitHub Secrets에서 관리합니다.
+                    'Authorization': 'Bearer ${{ secrets.MY_GITHUB_TOKEN }}', // GitHub Personal Access Token을 코드에 직접 넣지 않고, GitHub Secrets에서 관리합니다.
                     'Accept': 'application/vnd.github.v3+json',
                     'Content-Type': 'application/json'
                 },
