@@ -4,10 +4,9 @@ const fetch = require('node-fetch');
 const cors = require('cors');
 const app = express();
 
-// CORS 설정 추가
-app.use(cors({
-    origin: 'https://poongmoon.github.io' // CORS 허용할 도메인 입력
-}));
+// 모든 도메인 허용 CORS 설정
+app.use(cors());
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -33,6 +32,7 @@ app.post('/api/gpt', async (req, res) => {
         });
 
         const data = await response.json();
+        res.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
         res.json(data);
     } catch (error) {
         console.error("API 요청 오류:", error);
