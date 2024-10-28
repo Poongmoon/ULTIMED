@@ -10,17 +10,24 @@
     <h1>머리의 아픈 부위를 선택하세요</h1>
 
     <div class="illustration-container">
-        <div class="head-side-view">
-            <!-- 머리 옆 모습, 부위 선택 칸 -->
-            <div class="head-section" data-value="1" onclick="toggleSelect(this)"></div>
-            <div class="head-section" data-value="2" onclick="toggleSelect(this)"></div>
-            <div class="head-section" data-value="3" onclick="toggleSelect(this)"></div>
+        <!-- 머리 옆 모습과 라벨 -->
+        <div class="head-section-container">
+            <div class="head-side-view">
+                <div class="head-section" data-value="1" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="2" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="3" onclick="toggleSelect(this)"></div>
+            </div>
+            <p class="label">옆</p>
         </div>
-        <div class="head-top-view">
-            <!-- 머리 위에서 본 모습, 부위 선택 칸 -->
-            <div class="head-section" data-value="4" onclick="toggleSelect(this)"></div>
-            <div class="head-section" data-value="5" onclick="toggleSelect(this)"></div>
-            <div class="head-section" data-value="6" onclick="toggleSelect(this)"></div>
+
+        <!-- 머리 위에서 본 모습과 라벨 -->
+        <div class="head-section-container">
+            <div class="head-top-view">
+                <div class="head-section" data-value="4" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="5" onclick="toggleSelect(this)"></div>
+                <div class="head-section" data-value="6" onclick="toggleSelect(this)"></div>
+            </div>
+            <p class="label">위</p>
         </div>
     </div>
 
