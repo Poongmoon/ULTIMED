@@ -32,22 +32,45 @@ h1, h2 {
     color: #00b4d8;
 }
 
-/* 머리 이미지 선택 영역 스타일 */
-.image-container {
-    position: relative;
-    width: 150px;
-    height: auto;
-    margin: 0 auto;
+/* 머리 부위 선택 그리드 컨테이너 */
+.head-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
 }
 
-.image-container img {
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     width: 100%;
-    border-radius: 10px;
-    border: 2px solid #00b4d8;
+    max-width: 300px;
 }
 
-area.selected {
-    outline: 3px solid #ff6666; /* 선택된 영역 강조 */
+.grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: 2px solid #555;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.grid-item:hover {
+    background-color: #555;
+}
+
+.grid-item.selected {
+    background-color: #007b9e;
+    border-color: #00b4d8;
 }
 
 /* 다음 버튼 */
