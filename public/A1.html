@@ -90,3 +90,11 @@
 
             const diagnosisResult = await fetchFromGitHubActions(diagnosisPrompt);
             const solutionResult = await fetchFromGitHubActions(solutionPrompt);
+
+            document.getElementById("diagnosis-result").textContent = diagnosisResult;
+            document.getElementById("solution-result").textContent = solutionResult;
+        }
+    </script>
+
+</body>
+</html>
