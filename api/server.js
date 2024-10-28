@@ -1,16 +1,23 @@
-// api/server.js
 const express = require('express');
 const fetch = require('node-fetch');
 const cors = require('cors');
 const app = express();
 
-// 모든 도메인 허용 CORS 설정
-app.use(cors());
-app.options('*', cors());
+// CORS 설정: 특정 도메인으로 제한하거나 모든 도메인 허용
+app.use(cors({ origin: 'https://poongmoon.github.io' })); // 필요한 도메인으로 제한
+app.options('*', cors()); // 모든 프리플라이트 요청 허용
 
 app.use(express.json());
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+
+// 프리플라이트 OPTIONS 요청에 대한 응답 처리
+app.options('/api/gpt', (req, res) => {
+    res.set('Access-Control-Allow-Origin', 'https://poongmoon.github.io');
+    res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.status(204).send();
+});
 
 app.post('/api/gpt', async (req, res) => {
     const { prompt } = req.body;
@@ -32,7 +39,7 @@ app.post('/api/gpt', async (req, res) => {
         });
 
         const data = await response.json();
-        res.setHeader("Access-Control-Allow-Origin", "*"); // 모든 도메인 허용
+        res.setHeader("Access-Control-Allow-Origin", "https://poongmoon.github.io");
         res.json(data);
     } catch (error) {
         console.error("API 요청 오류:", error);
